@@ -22,5 +22,10 @@ public class EventService {
 	public int createEvent(Event event) {
 		return eventDao.createEvent(event);
 	}
+	
+
+	public int  deleteEventByEventId(Long eventId) {
+		return eventDao.deleteEventById(eventId);
+	}
 
 }

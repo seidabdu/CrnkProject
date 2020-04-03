@@ -23,8 +23,8 @@ public class EventRepository extends ResourceRepositoryBase<Event, Long> {
 	}
 
 	@Override
-	public synchronized void delete(Long id) {
-//		events.remove(id);
+	public synchronized void delete(Long eventId) {
+		eventService.deleteEventByEventId(eventId);
 	}
 
 	@Override
@@ -32,10 +32,17 @@ public class EventRepository extends ResourceRepositoryBase<Event, Long> {
 		if (event.getId() == null) {
 			event.setId(ID_GENERATOR.getAndIncrement());
 		}
-//		events.put(event.getId(), event);
+
+		String evname = event.getEventName();
+		System.out.println(evname);
 		eventService.createEvent(event);
 
 		return event;
+	}
+
+	@Override
+	public Event create(Event event) {
+		return save(event);
 	}
 
 	@Override

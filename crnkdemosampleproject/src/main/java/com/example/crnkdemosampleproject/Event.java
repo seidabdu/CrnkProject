@@ -35,12 +35,12 @@ public class Event {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getEventName() {
 		return eventName;
 	}
 
-	public void setName(String name) {
-		this.eventName = name;
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
 
 	public String getAddress() {
@@ -51,4 +51,5 @@ public class Event {
 		this.address = address;
 	}
 
+	
 }

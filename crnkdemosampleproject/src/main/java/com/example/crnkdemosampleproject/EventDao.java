@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class EventDao {
@@ -26,7 +25,7 @@ public class EventDao {
 			Event event = new Event();
 			int eventId = (int) row.get("eventId");
 			event.setId(Long.valueOf(eventId));
-			event.setName((String) row.get("eventName"));
+			event.setEventName((String) row.get("eventName"));
 			event.setAddress((String) row.get("address"));
 
 			events.add(event);
@@ -35,15 +34,18 @@ public class EventDao {
 		return events;
 	}
 
-	@Transactional(readOnly = true)
 	public Event findEventyEventId(Long eventId) {
 		return jdbcTemplate.queryForObject("select * from event where eventId=?", new Object[] { eventId },
 				new EventMapper());
 	}
 
-	@Transactional(readOnly = true)
 	public int createEvent(Event event) {
-		return jdbcTemplate.update("insert into event (eventName,address) values(?,?)", event.getName(),event.getAddress());
+		return jdbcTemplate.update("insert into event (eventName,address) values(?,?)", event.getEventName(),
+				event.getAddress());
+	}
+
+	public int deleteEventById(Long eventId) {
+		return jdbcTemplate.update("delete from event where eventId=?", eventId);
 	}
 
 }

@@ -10,7 +10,7 @@ public class EventMapper implements RowMapper<Event> {
 	public Event mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Event event = new Event();
 		event.setId(Long.valueOf(rs.getInt("id")));
-		event.setName(rs.getString("eventName"));
+		event.setEventName(rs.getString("eventName"));
 		event.setAddress(rs.getString("address"));
 		return event;
 	}

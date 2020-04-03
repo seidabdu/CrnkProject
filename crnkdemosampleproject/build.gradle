@@ -39,6 +39,9 @@ dependencies {
 	
 	compile 'io.crnk:crnk-setup-spring-boot2'
     compile 'io.crnk:crnk-home'
+
+
+
 }
 
 test {
